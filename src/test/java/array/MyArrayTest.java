@@ -65,7 +65,7 @@ public class MyArrayTest {
     }
 
     @Test
-    public void should_add_item_within_capacity() {
+    public void should_add_item_with_capacity() {
         MyArray myArray = new MyArray(3);
         myArray.add(1);
         myArray.add(2);
@@ -80,6 +80,52 @@ public class MyArrayTest {
         assertEquals(4, myArray.get(3));
         assertEquals(5, myArray.get(4));
         assertEquals(6, myArray.get(5));
+    }
+
+    @Test
+    public void should_add_item_to_array_without_init_capacity() {
+        MyArray myArray = new MyArray();
+        myArray.add(1);
+        myArray.add(2);
+
+        assertEquals(1, myArray.get(0));
+        assertEquals(2, myArray.get(1));
+    }
+
+    @Test
+    public void should_delete_given_index_item() {
+        MyArray myArray = new MyArray();
+        myArray.add(1);
+        myArray.add(2);
+        myArray.add(3);
+        myArray.add(4);
+        myArray.add(5);
+
+        myArray.deleteAt(0);
+        myArray.deleteAt(3);
+        myArray.deleteAt(1);
+
+        assertEquals(2, myArray.get(0));
+        assertEquals(4, myArray.get(1));
+    }
+
+    @Test
+    public void should_delete_given_index_item_at_head() {
+        MyArray myArray = new MyArray();
+        myArray.add(1);
+        myArray.add(2);
+        myArray.add(3);
+        myArray.add(4);
+        myArray.add(5);
+
+        myArray.deleteAt(0);
+        assertEquals(2, myArray.get(0));
+
+        myArray.deleteAt(0);
+        assertEquals(3, myArray.get(0));
+
+        myArray.deleteAt(0);
+        assertEquals(4, myArray.get(0));
     }
 
     @Test

@@ -55,12 +55,29 @@ public class MyArray {
     }
 
     private void ensureCapacity() {
-        if (actualCount == this.data.length) {
+        if (this.data.length == 0) {
+            this.data = new int[1];
+        } else if (actualCount == this.data.length) {
             int[] newArray = new int[actualCount * 2];
             for (int i = 0; i < actualCount; i++) {
                 newArray[i] = data[i];
             }
             this.data = newArray;
         }
+    }
+
+    public void deleteAt(int index) {
+        if (index < 0 || index >= actualCount) {
+            return;
+        }
+        int[] newArray = new int[actualCount - 1];
+        for (int i = 0; i < index; i++) {
+            newArray[i] = this.data[i];
+        }
+        for (int i = index + 1; i < actualCount; i++) {
+            newArray[i - 1] = this.data[i];
+        }
+        this.data = newArray;
+        this.actualCount--;
     }
 }
