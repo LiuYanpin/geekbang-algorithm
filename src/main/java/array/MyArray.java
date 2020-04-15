@@ -17,7 +17,7 @@ public class MyArray {
     }
 
     public void addAtHead(int value) {
-        int[] newValue = new int[length() + 1];
+        int[] newValue = new int[actualCount + 1];
         newValue[0] = value;
         for (int i = 0; i < length(); i++) {
             newValue[i + 1] = data[i];
@@ -27,17 +27,26 @@ public class MyArray {
     }
 
     public int get(int index) {
-        if (index < 0 || index >= length()) {
+        if (index < 0 || index >= actualCount) {
             return -1;
         }
         return this.data[index];
     }
 
     public void insertAt(int index, int value) {
-        if (index < 0) {
+        if (index < 0 || index > actualCount) {
             return;
         }
-
+        int[] newArray = new int[actualCount + 1];
+        for (int i = 0; i < index; i++) {
+            newArray[i] = this.data[i];
+        }
+        newArray[index] = value;
+        for (int i = index; i < actualCount; i++) {
+            newArray[i + 1] = this.data[i];
+        }
+        this.data = newArray;
+        this.actualCount++;
     }
 
     public void add(int value) {

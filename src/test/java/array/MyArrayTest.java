@@ -53,6 +53,18 @@ public class MyArrayTest {
     }
 
     @Test
+    public void should_insert_value_at_tail_if_index_equal_size() {
+        MyArray myArray = new MyArray();
+        myArray.insertAt(0, 1);
+        myArray.insertAt(1, 2);
+        myArray.insertAt(1, 3);
+
+        assertEquals(1, myArray.get(0));
+        assertEquals(3, myArray.get(1));
+        assertEquals(2, myArray.get(2));
+    }
+
+    @Test
     public void should_add_item_within_capacity() {
         MyArray myArray = new MyArray(3);
         myArray.add(1);
@@ -74,13 +86,8 @@ public class MyArrayTest {
     public void should_show_the_original_array() {
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(0, 1);
-        arrayList.add(0, 2);
+        arrayList.add(1, 2);
         arrayList.add(1, 3);
-        arrayList.add(2, 4);
-        arrayList.add(-1, 1);
-        assertEquals(2, arrayList.get(0).intValue());
-        assertEquals(3, arrayList.get(1).intValue());
-        assertEquals(4, arrayList.get(2).intValue());
-        assertEquals(1, arrayList.get(3).intValue());
+        assertEquals(1, arrayList.get(1).intValue());
     }
 }
